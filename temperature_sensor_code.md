@@ -1,4 +1,4 @@
-
+``` python
 import Adafruit_DHT
 import time
 sensor = Adafruit_DHT.DHT11
@@ -15,4 +15,6 @@ while True:
     else:
         print('Failed to get reading. Try again!')
     time.sleep(1)
+
+```
 
