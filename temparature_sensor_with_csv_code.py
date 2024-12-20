@@ -7,10 +7,8 @@ from datetime import datetime
 sensor = Adafruit_DHT.DHT11
 pin = 21
 
-# Generate a dynamic CSV file name based on the sensor type and pin number
 csv_file = f"sensor_dht11_pin_{pin}.csv"
 
-# Create a CSV file and write the header if it doesn't exist
 try:
     with open(csv_file, mode='x', newline='') as file:
         writer = csv.writer(file)
@@ -20,7 +18,6 @@ except FileExistsError:
 
 print(f"Recording data to {csv_file}... Press Ctrl+C to stop.")
 
-# Main loop
 try:
     while True:
         humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
@@ -28,7 +25,6 @@ try:
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             print(f'Time: {timestamp}, Temp: {temperature:0.1f}°C, Humidity: {humidity:0.1f}%')
             
-            # Write data to CSV
             with open(csv_file, mode='a', newline='') as file:
                 writer = csv.writer(file)
                 writer.writerow([timestamp, temperature, humidity])
